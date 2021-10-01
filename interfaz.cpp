@@ -7,7 +7,9 @@ interfaz::interfaz(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->pushButton->setText("Enviar");
+    ui->pushButton->setText("Enviar"); //Este boton no se encuentra en en la escena
+
+
 
     escenario = new QGraphicsScene(); // Aqui estoy inicializando el objeto escenario, asignandole memoria
                                       // ya que yo lo cree en el hip y no en el stack.
@@ -15,37 +17,67 @@ interfaz::interfaz(QWidget *parent)
     //El escenario en toda la interfaz.
 
 
+
+
+
     //AHORA VOY A INCLUIR ELEMENTOS EN EL ESCENARIO//
     escenario->addRect(0,0,100,100); // (x,y,ancho,altura) esas dimensiones son en pixeles
 
-    escenario->addEllipse(0,0,100,100);
 
-    auto *rectangulo = escenario->addRect(0,200,100,100);
+
+
+    QPen contorno(Qt::green,5,Qt::SolidLine); //Creo un contorno que puedo utilizar en varias figu
+    QBrush pintura(Qt::red,Qt::SolidPattern); //Pintura para ser utilizada por cualquier figu.
+
+    escenario->addEllipse(0,0,100,100, contorno, pintura);
+
+
+
+
+    //Modifico color del contorno y color de pintura para que sean usadas en otra figura.
+    contorno.setColor(Qt::red);
+    pintura.setColor(Qt::black);
+
+    auto *rectangulo = escenario->addRect(0,200,100,100, contorno, pintura);
+
+    rectangulo->setPos(350,250); //Aqui cambio la posicion que le puse inicialmente a
+                                 //la figura que acave de guardar en *rectangulo.
+
+
+
+
+    /* ################## AHORA PONDRE UNA IMAGEN EN LA ESCENA ##################### */
 
     imagen = new QGraphicsPixmapItem();
     imagen->setPixmap(QPixmap(":/imagenes/ave1.png"));
     imagen->setPos(120,250);
     escenario->addItem(imagen);
 
+    /* ################## LISTO! YA ESTA LA IMAGEN PUESTA EN LA ESCENA ############### */
 
 
-    //Si quiero que la figura que voy a agregar tenga un contorno personalizado le paso un Qpen.
 
-    QPen contorno(Qt::red, 3, Qt::DashDotLine, Qt::RoundCap, Qt::RoundJoin);
+    /*NOTA: Un contorno puede tener todos los siguientes atributos.*/
+
+    QPen contorno0(Qt::red, 3, Qt::DashDotLine, Qt::RoundCap, Qt::RoundJoin);
 
     escenario->addRect(120,0,50,50,contorno,Qt::red);
 
+    /* FIN DE NOTA */
 
-    QPen contorno1(Qt::blue, 5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-    //Y si ademas queremos agregarle a la figura un color.
+
+
+
+    /* ######### SI QUEREMOS QUE LA PINTURA DE UN RECTANGULO SEA UNA IMAGEN ########### */
 
     QString ruta = "colo.png";
     QImage im(ruta);
-
     QBrush brocha(im);
-    //brocha.setColor(Qt::green);
 
-    escenario->addRect(130,130,80,80,contorno1, brocha);
+    contorno0.setStyle(Qt::SolidLine);
+    escenario->addRect(130,130,80,80,contorno0, brocha);
+
+    /* ######### LISTO! ESE RECTANGULO QUEDO CON LA IMAN DE colo.png ADENTRO ########### */
 
 
 
@@ -54,10 +86,16 @@ interfaz::interfaz(QWidget *parent)
     ui->graphicsView->setScene(escenario);
 }
 
+
+
+
+
 interfaz::~interfaz()
 {
     delete ui;
 }
+
+
 
 
 void interfaz::on_pushButton_clicked()
