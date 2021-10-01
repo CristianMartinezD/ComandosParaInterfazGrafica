@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>interfaz</class>
+ <widget class="QMainWindow" name="interfaz">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Mi Primera App</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>891</width>
+      <height>611</height>
+     </rect>
+    </property>
+    <property name="acceptDrops">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>440</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Enviar</string>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="textBrowser">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>0</y>
+      <width>256</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
