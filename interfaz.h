@@ -6,6 +6,8 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QImage>
+#include <QVector>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class interfaz; }
@@ -20,13 +22,19 @@ public:
     ~interfaz();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_derecha_clicked();
+    void on_detenerse_clicked();
 
 private:
     Ui::interfaz *ui;
 
     QGraphicsScene *escenario; // Aqui estoy creando el escenario en el hip.
 
-    QGraphicsPixmapItem *imagen;
+    QGraphicsPixmapItem *pajaro;
+    int posicionX = 120, posicionY = 250;
+
+    QVector<QString> rutas;
+
+    QTimer *reloj1;
 };
 #endif // INTERFAZ_H

@@ -27,27 +27,30 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="detenerse">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>440</y>
+      <x>200</x>
+      <y>450</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>Enviar</string>
+     <string>detenerse</string>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QPushButton" name="derecha">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>0</y>
-      <width>256</width>
-      <height>192</height>
+      <x>310</x>
+      <y>450</y>
+      <width>75</width>
+      <height>23</height>
      </rect>
+    </property>
+    <property name="text">
+     <string>derecha</string>
     </property>
    </widget>
   </widget>
