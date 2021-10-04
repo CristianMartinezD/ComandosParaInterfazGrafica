@@ -30,8 +30,8 @@
    <widget class="QPushButton" name="detenerse">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>450</y>
+      <x>270</x>
+      <y>570</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -43,8 +43,8 @@
    <widget class="QPushButton" name="derecha">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>450</y>
+      <x>360</x>
+      <y>570</y>
       <width>75</width>
       <height>23</height>
      </rect>

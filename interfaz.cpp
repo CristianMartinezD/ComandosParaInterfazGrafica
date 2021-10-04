@@ -14,60 +14,51 @@ interfaz::interfaz(QWidget *parent)
 
     escenario = new QGraphicsScene(); // Aqui estoy inicializando el objeto escenario, asignandole memoria
                                       // ya que yo lo cree en el hip y no en el stack.
-    escenario->setSceneRect(0,0,ui->graphicsView->width()-5,ui->graphicsView->height()-5); //Esto es para colocar
+    //escenario->setSceneRect(0,0,ui->graphicsView->width()-5,ui->graphicsView->height()-5); //Esto es para colocar
     //El escenario en toda la interfaz.
 
 
+    personaje = new QGraphicsEllipseItem();
+    personaje = escenario->addEllipse(0,-35,30,30,(Qt::green,2,Qt::SolidLine),(Qt::green,Qt::SolidPattern));
 
 
-
-    //AHORA VOY A INCLUIR ELEMENTOS EN EL ESCENARIO//
-    escenario->addRect(0,0,100,100); // (x,y,ancho,altura) esas dimensiones son en pixeles
-
-
-
-
-    QPen contorno(Qt::green,5,Qt::SolidLine); //Creo un contorno que puedo utilizar en varias figu
+    QPen contorno(Qt::green,5,Qt::DashDotLine); //Creo un contorno que puedo utilizar en varias figu
     QBrush pintura(Qt::red,Qt::SolidPattern); //Pintura para ser utilizada por cualquier figu.
 
-    escenario->addEllipse(0,0,100,100, contorno, pintura);
 
+    int matrizLaberinto[10][10] ={
+        {1,1,1,0,1,1,1,1,1,1},
+        {1,1,1,0,1,1,1,1,1,1},
+        {1,1,1,0,0,0,1,1,1,1},
+        {1,1,1,1,1,0,1,1,1,1},
+        {1,1,0,0,0,0,1,1,1,1},
+        {1,1,0,1,1,1,1,0,0,0},
+        {1,1,0,1,1,1,1,0,1,1},
+        {1,1,0,0,0,0,0,0,1,1},
+        {1,1,1,1,1,0,1,1,1,1},
+        {1,1,1,1,1,0,1,1,1,1}
+    };
 
+    for(int i = 0; i < 10; i++){
+        for(int j = 0; j < 10; j++){
+            if(matrizLaberinto[i][j] == 1){
+                paredes.push_back( escenario->addRect(j*50,i*50,50,50, contorno, pintura) );
+              }
 
-
-    //Modifico color del contorno y color de pintura para que sean usadas en otra figura.
-    contorno.setColor(Qt::red);
-    pintura.setColor(Qt::black);
-
-    QGraphicsRectItem *rectangulo = escenario->addRect(290,0,100,100, contorno, pintura);
-
-    rectangulo->setPos(292,0); //Aqui cambio la posicion que le puse inicialmente a
-                                 //la figura que acave de guardar en *rectangulo.
+           }
+        }
 
 
 
 
     /* ################## AHORA PONDRE UNA IMAGEN EN LA ESCENA ##################### */
 
-    rutas.push_back(":/imagenes/ave1.png");
-    rutas.push_back(":/imagenes/ave2.png");
-    rutas.push_back(":/imagenes/ave3.png");
-    rutas.push_back(":/imagenes/ave4.png");
-    rutas.push_back(":/imagenes/ave5.png");
-    rutas.push_back(":/imagenes/ave6.png");
-    rutas.push_back(":/imagenes/ave7.png");
-    rutas.push_back(":/imagenes/ave8.png");
-    rutas.push_back(":/imagenes/ave7.png");
-    rutas.push_back(":/imagenes/ave6.png");
-    rutas.push_back(":/imagenes/ave5.png");
-    rutas.push_back(":/imagenes/ave4.png");
-    rutas.push_back(":/imagenes/ave3.png");
-    rutas.push_back(":/imagenes/ave2.png");
 
+    rutas.push_back(":/imagenes/ave1.png");
     pajaro = new QGraphicsPixmapItem();
     pajaro->setPixmap(QPixmap(rutas.at(0)));
     pajaro->setPos(posicionX, posicionY);
-    escenario->addItem(pajaro);
+    //escenario->addItem(pajaro);
 
     /* ################## LISTO! YA ESTA LA IMAGEN PUESTA EN LA ESCENA ############### */
 
@@ -81,32 +72,6 @@ interfaz::interfaz(QWidget *parent)
 
 
 
-    /*NOTA: Un contorno puede tener todos los siguientes atributos.*/
-
-    QPen contorno0(Qt::red, 3, Qt::DashDotLine, Qt::RoundCap, Qt::RoundJoin);
-
-    escenario->addRect(120,0,50,50,contorno,Qt::red);
-
-    /* FIN DE NOTA */
-
-
-
-
-    /* ######### SI QUEREMOS QUE LA PINTURA DE UN RECTANGULO SEA UNA IMAGEN ########### */
-
-    QString ruta = "../intergrafica/imagenes/bloque.png";
-    QImage im(ruta);
-    QBrush brocha(im);
-
-    contorno0.setStyle(Qt::SolidLine);
-    escenario->addRect(200,0,80,80,contorno0, brocha);
-
-    /* ######### LISTO! ESE RECTANGULO QUEDO CON LA IMAN DE colo.png ADENTRO ########### */
-
-
-
-    //FINALMENTE MUESTRO EL ESCENARIO QUE SE ENCUENTRA DENTRO DEL EDIFICIO, EL CUAL A SU VEZ ESTA CONTRUIDO
-    //EN LA INTERFAZ QUE ES CONTROLADA POR EL OBJETO ui.
     ui->graphicsView->setScene(escenario);
 }
 
@@ -124,22 +89,59 @@ interfaz::~interfaz()
 static int contador = 0;
 void interfaz::on_derecha_clicked()
 {
-    reloj1->start(30);
-    posicionX += 5;
-    posicionY += 0;
+//    reloj1->start(30);
+//    posicionX += 5;
+//    posicionY += 0;
 
-    pajaro->setPixmap(QPixmap(rutas.at(contador)));
+//    pajaro->setPixmap(QPixmap(rutas.at(contador)));
 
-    pajaro->setPos(posicionX, posicionY);
+//    pajaro->setPos(posicionX, posicionY);
 
-    contador++;
+//    contador++;
 
-    if(contador >= 14) contador = 0;
+//    if(contador >= 14) contador = 0;
 }
 
 
 void interfaz::on_detenerse_clicked()
 {
-    reloj1->stop();
+    //reloj1->stop();
+
+}
+
+void interfaz::keyPressEvent(QKeyEvent *tecla)
+{
+    static int posiX = 0, posiY = 0;
+
+    switch (tecla->key()) { // Ver documentacion de Key().
+        case Qt::Key_A:
+        qDebug() <<"HAS PRESIONA LA TECLA A, (izquierda)"<<endl;
+        posiX -= 10;
+        personaje->setPos(posiX,posiY);
+        break;
+
+        case Qt::Key_W:
+        qDebug() <<"HAS PRESIONA LA TECLA W, (arriba)"<<endl;
+        posiY -= 10;
+        personaje->setPos(posiX,posiY);
+        break;
+
+        case Qt::Key_D:
+        qDebug() <<"HAS PRESIONA LA TECLA D, (derecha)"<<endl;
+        posiX += 10;
+        personaje->setPos(posiX,posiY);
+        break;
+
+        case Qt::Key_Z:
+        qDebug() <<"HAS PRESIONA LA TECLA Z, (abajo)"<<endl;
+        posiY += 10;
+        personaje->setPos(posiX,posiY);
+        break;
+
+
+    }
+
+    /* ##########  Para mantener el foco puesto en el personaje ######### */
+    ui->graphicsView->setSceneRect(posiX, posiY-100, 500,500);
 
 }

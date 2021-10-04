@@ -4,10 +4,15 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
-#include <QObject>
 #include <QImage>
 #include <QVector>
+#include <QList>
 #include <QTimer>
+#include <QDebug>
+#include <QGraphicsEllipseItem>
+#include <QtMath>  //Esta me puede servir para todo lo de matematicas.
+#include <QKeyEvent> //Esta es para captar eventos del teclado.
+#include <QAbstractButton> //Esto trabaja junto con QKeyEvent para captar las teclas que se oprimen
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class interfaz; }
@@ -36,5 +41,15 @@ private:
     QVector<QString> rutas;
 
     QTimer *reloj1;
+
+    QList<QGraphicsRectItem *> paredes;
+
+    QGraphicsEllipseItem *personaje;
+
+
+protected:
+    void keyPressEvent(QKeyEvent *tecla); //Este es un metodo virtual de la clase QAbstractButton que
+                                          //se mantiene a la espera de que se presione
+                                          //una tecla para captarla.
 };
 #endif // INTERFAZ_H
