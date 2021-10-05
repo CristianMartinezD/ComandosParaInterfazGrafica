@@ -142,6 +142,6 @@ void interfaz::keyPressEvent(QKeyEvent *tecla)
     }
 
     /* ##########  Para mantener el foco puesto en el personaje ######### */
-    ui->graphicsView->setSceneRect(posiX, posiY-100, 500,500);
+    ui->graphicsView->setSceneRect(posiX, posiY-5, 480,478);
 
 }
